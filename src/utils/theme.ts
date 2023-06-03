@@ -1,7 +1,7 @@
 export const darkTheme = {
   bg: '#102a4c',
   text: '#FFFFFF',
-  btnColor: '#096db5',
+  btnColor: '#6130e8',
   font:{
     regular: 300,
     medium: 400,
