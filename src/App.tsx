@@ -16,7 +16,6 @@ function App() {
 
   const fetchData = async () => {
     const res = await axios.get(`https://jsonplaceholder.typicode.com/photos/`);
-    console.log(res.data.length);
     setData(res.data);
    }
 
