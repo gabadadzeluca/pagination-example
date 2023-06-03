@@ -9,7 +9,10 @@ const ITEMS_PER_PAGE: number = 10;
 function App() {
   const [data, setData] = useState<PhotoObjectInterface[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
-
+  const startIndex = currentPage * ITEMS_PER_PAGE;
+  const endIndex = (currentPage + 1) * ITEMS_PER_PAGE;
+  
+  console.log("CURRENT PAGE:",currentPage);
   useEffect(() => {
     fetchData();
   }, []);
@@ -32,13 +35,12 @@ function App() {
     setCurrentPage(pageNumber);
   };
 
+
+
   return (
     <>
       <Posts
-        batchData={getBatchData(
-          currentPage * ITEMS_PER_PAGE,
-          (currentPage + 1) * ITEMS_PER_PAGE
-        )}
+        batchData={getBatchData(startIndex, endIndex)}
       />
       <Pagination
         handlePageChange={handlePageChange}
