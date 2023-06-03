@@ -1,3 +1,6 @@
+import styled from "styled-components";
+import SButton from "../Button/Button.styled";
+
 const ACTIONS = [-5, -1, 0, 1, 5];
 
 export default function Pagination(props: {
@@ -7,14 +10,33 @@ export default function Pagination(props: {
   const { currentPage, handlePageChange } = props;
 
   return (
-    <div>
-      <button onClick={() => handlePageChange(currentPage - 1)}>Prev</button>
-      {ACTIONS.map((number) => (
-        <button onClick={() => handlePageChange(currentPage + number)}>
+    <ButtonsContainer>
+      <SButton onClick={() => handlePageChange(currentPage - 1)} active>
+        Prev
+      </SButton>
+      <SButton active>...</SButton>
+      {ACTIONS.map((number, index) => (
+        <SButton
+          onClick={() => handlePageChange(currentPage + number)}
+          active={currentPage+number >= 0}
+          current={index === 2}
+        >
           {currentPage + number < 0 ? "" : currentPage + number}
-        </button>
+        </SButton>
       ))}
-      <button onClick={() => handlePageChange(currentPage + 1)}>Next</button>
-    </div>
+      <SButton active>...</SButton>
+      <SButton onClick={() => handlePageChange(currentPage + 1)} active>
+        Next
+      </SButton>
+    </ButtonsContainer>
   );
 }
+
+const ButtonsContainer = styled.div`
+  display: inline-flex;
+  align-items: center;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  position: fixed;
+  top: 75%;
+`
