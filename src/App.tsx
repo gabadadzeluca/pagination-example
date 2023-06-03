@@ -21,6 +21,9 @@ function App() {
    }
 
   const getBatchData = (start:number, end:number):PhotoObjectInterface[] => {
+    if(end === 0){ // corner case 
+      return [...data.slice(start, -1), data[data.length - 1]];
+    }
     // Slice the data array to get the images for the current page
     return data.slice(start, end);
   };
