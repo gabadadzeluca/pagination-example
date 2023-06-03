@@ -3,6 +3,9 @@ import PhotoObjectInterface from "./utils/PhotoObjectInterface";
 import axios from "axios";
 import Pagination from "./components/Pagination/Pagination";
 import Posts from "./components/Posts/Posts";
+import styled, { ThemeProvider } from "styled-components";
+import { darkTheme } from "./utils/theme";
+
 
 const ITEMS_PER_PAGE: number = 10;
 
@@ -36,16 +39,31 @@ function App() {
   };
 
   return (
-    <>
-      <Posts
-        batchData={getBatchData(startIndex, endIndex)}
-      />
-      <Pagination
-        handlePageChange={handlePageChange}
-        currentPage={currentPage}
-      />
-    </>
+    <ThemeProvider theme={darkTheme}>
+      <SContainer>
+        <Posts
+          batchData={getBatchData(startIndex, endIndex)}
+        />
+        <Pagination
+          handlePageChange={handlePageChange}
+          currentPage={currentPage}
+        />
+      </SContainer>
+    </ThemeProvider>
   );
 }
 
 export default App;
+
+
+const SContainer = styled.div`
+  background-color: ${({theme})=>theme.bg};
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: ${({theme})=> theme.text};
+  overflow-x: hidden;
+
+`
