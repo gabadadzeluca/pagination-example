@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import PhotoObjectInterface from './utils/PhotoObjectInterface';
 import axios from 'axios';
+import Pagination from './components/Pagination/Pagination';
+import Posts from './components/Posts/Posts';
 
 const ITEMS_PER_PAGE : number = 10;
 
@@ -29,6 +31,8 @@ function App() {
 
   return (
     <>
+      <Posts batchData={getBatchData(currentPage*ITEMS_PER_PAGE, (currentPage+1)*ITEMS_PER_PAGE)} />
+      <Pagination handlePageChange={handlePageChange} currentPage={currentPage} />
     </>
   )
 }
