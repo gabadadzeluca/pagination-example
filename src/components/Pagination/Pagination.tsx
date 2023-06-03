@@ -21,7 +21,7 @@ export default function Pagination(props: {
           active={currentPage+number >= 0}
           current={index === 2}
         >
-          {currentPage + number < 0 ? "" : currentPage + number}
+          {currentPage + number <= 0 ? "" : currentPage + number}
         </SButton>
       ))}
       <SButton active>...</SButton>
