@@ -17,6 +17,7 @@ export default function Pagination(props: {
       <SButton active>...</SButton>
       {ACTIONS.map((number, index) => (
         <SButton
+          key={index}
           onClick={() => handlePageChange(currentPage + number)}
           active={currentPage+number >= 0}
           current={index === 2}
@@ -37,6 +38,6 @@ const ButtonsContainer = styled.div`
   align-items: center;
   border-radius: 0.5rem;
   overflow: hidden;
-  position: fixed;
-  top: 75%;
+  /* position: fixed; */
+  /* top: 75%; */
 `
