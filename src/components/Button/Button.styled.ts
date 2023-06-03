@@ -16,7 +16,7 @@ const SButton = styled.button<ButtonProps>`
   font-family: inherit;
   background-color: ${({theme }) => theme.btnColor};
   color: ${({current, theme})=> current ? 'orange' : theme.text };
-  font-weight: ${({theme})=> theme.font.regular};
+  font-weight: ${({theme})=> theme.font.medium};
   font-size: 3rem;
 
   &:hover{
