@@ -6,7 +6,6 @@ import Posts from "./components/Posts/Posts";
 import styled, { ThemeProvider } from "styled-components";
 import { darkTheme } from "./utils/theme";
 
-
 const ITEMS_PER_PAGE: number = 10;
 
 function App() {
@@ -55,15 +54,13 @@ function App() {
 
 export default App;
 
-
 const SContainer = styled.div`
   background-color: ${({theme})=>theme.bg};
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: ${({theme})=> theme.text};
   overflow-x: hidden;
-
 `
