@@ -13,6 +13,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const startIndex = currentPage * ITEMS_PER_PAGE;
   const endIndex = (currentPage + 1) * ITEMS_PER_PAGE;
+  const totalPosts = data.length;
 
   useEffect(() => {
     fetchData();
@@ -34,6 +35,7 @@ function App() {
 
   const handlePageChange = (pageNumber: number) => {
     if(pageNumber<=0) return;
+    if(totalPosts < pageNumber * ITEMS_PER_PAGE) return;
     setCurrentPage(pageNumber);
   };
 
