@@ -26,7 +26,7 @@ export default function Pagination(props: {
         </SButton>
       ))}
       <SButton active>...</SButton>
-      <SButton onClick={() => handlePageChange(currentPage - 1)} active img={arrowRight}></SButton>
+      <SButton onClick={() => handlePageChange(currentPage + 1)} active img={arrowRight}></SButton>
     </ButtonsContainer>
   );
 }
