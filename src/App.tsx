@@ -30,11 +30,11 @@ function App() {
       return [...data.slice(start, -1), data[data.length - 1]];
     }
     // Slice the data array to get the images for the current page
-    return data.slice(start, end);
+    return data.slice(start-ITEMS_PER_PAGE, end-ITEMS_PER_PAGE);
   };
 
   const handlePageChange = (pageNumber: number) => {
-    if(pageNumber<0) return;
+    if(pageNumber<=0) return;
     setCurrentPage(pageNumber);
   };
 
