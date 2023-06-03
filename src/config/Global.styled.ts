@@ -4,6 +4,7 @@ const GlobalStyle = createGlobalStyle`
   *, *::before, *::after{
     margin: 0;
     box-sizing: border-box;
+    padding: 0;
   }
   html{
     font-size: 62.5%;
