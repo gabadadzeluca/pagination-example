@@ -37,7 +37,7 @@ const StyledDiv = styled.div`
   width: 80%;
   font-size: 1.5rem;
   padding: 2rem 4rem;
-  outline: 1px solid white;
+  outline: 1px solid #6130e8;
   &>p{
     margin-bottom: 1.5rem;
   }
