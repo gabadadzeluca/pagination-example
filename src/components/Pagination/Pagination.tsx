@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import SButton from "../Button/Button.styled";
+import arrowLeft from "../../assets/arrow-left.svg";
+import arrowRight from "../../assets/arrow-right.svg";
 
 const ACTIONS = [-5, -1, 0, 1, 5];
 
@@ -11,9 +13,7 @@ export default function Pagination(props: {
 
   return (
     <ButtonsContainer>
-      <SButton onClick={() => handlePageChange(currentPage - 1)} active>
-        Prev
-      </SButton>
+      <SButton onClick={() => handlePageChange(currentPage - 1)} active img={arrowLeft}></SButton>
       <SButton active>...</SButton>
       {ACTIONS.map((number, index) => (
         <SButton
@@ -26,9 +26,7 @@ export default function Pagination(props: {
         </SButton>
       ))}
       <SButton active>...</SButton>
-      <SButton onClick={() => handlePageChange(currentPage + 1)} active>
-        Next
-      </SButton>
+      <SButton onClick={() => handlePageChange(currentPage - 1)} active img={arrowRight}></SButton>
     </ButtonsContainer>
   );
 }
