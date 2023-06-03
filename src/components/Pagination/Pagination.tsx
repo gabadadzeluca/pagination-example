@@ -38,6 +38,6 @@ const ButtonsContainer = styled.div`
   align-items: center;
   border-radius: 0.5rem;
   overflow: hidden;
-  /* position: fixed; */
-  /* top: 75%; */
+  margin-top: 4rem;
+  margin-bottom: 6rem;
 `
