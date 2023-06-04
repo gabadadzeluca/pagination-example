@@ -74,8 +74,15 @@ const InputDiv = styled(ButtonsContainer)`
     width: 50%;
     border: none;
     font-size: inherit;
+    
+    ::-webkit-outer-spin-button,
+    ::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0; 
+    }
   }
   &>input:focus{
     outline: none;
+
   }
 `
