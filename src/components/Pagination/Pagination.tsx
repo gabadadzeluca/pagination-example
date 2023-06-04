@@ -9,8 +9,9 @@ const ACTIONS = [-5, -1, 0, 1, 5];
 export default function Pagination(props: {
   handlePageChange: (pageNumber: number) => void;
   currentPage: number;
+  totalPages: number;
 }) {
-  const { currentPage, handlePageChange } = props;
+  const { currentPage, handlePageChange, totalPages } = props;
   const [userInput, setUserInput] = useState<number>();
   
   const handleUserInput = (e: React.ChangeEvent<HTMLInputElement>):void => {
@@ -18,33 +19,64 @@ export default function Pagination(props: {
     setUserInput(parseInt(value));
   }
 
+  const handleJump = () =>{
+    if(!userInput) return;
+    else if(userInput > totalPages) return; // add some kind of error later
+    handlePageChange(userInput); 
+    setUserInput(0); // clear out the input field
+  }
+
   console.log("user input",userInput);
   return (
-    <ButtonsContainer>
-      <SButton onClick={() => handlePageChange(currentPage - 1)} active img={arrowLeft}></SButton>
-      <SButton active>...</SButton>
-      {ACTIONS.map((number, index) => (
-        <SButton
-          key={index}
-          onClick={() => handlePageChange(currentPage + number)}
-          active={currentPage+number >= 0}
-          current={index === 2}
-        >
-          {currentPage + number <= 0 ? "" : currentPage + number}
-        </SButton>
-      ))}
-      <SButton active>...</SButton>
-      <SButton onClick={() => handlePageChange(currentPage + 1)} active img={arrowRight}></SButton>
-      <input type='number' onChange={handleUserInput} value={userInput}/>
-    </ButtonsContainer>
+    <>
+      <ButtonsContainer>
+        <SButton onClick={() => handlePageChange(currentPage - 1)} active img={arrowLeft}></SButton>
+        <SButton>...</SButton>
+        {ACTIONS.map((number, index) => (
+          <SButton
+            key={index}
+            onClick={() => handlePageChange(currentPage + number)}
+            active={currentPage+number >= 0 && currentPage + number <= totalPages}
+            current={index === 2}
+          >
+            {currentPage + number <= 0 || currentPage + number > totalPages ? "" : currentPage + number}
+          </SButton>
+        ))}
+        <SButton>...</SButton>
+        <SButton onClick={() => handlePageChange(currentPage + 1)} active img={arrowRight}></SButton>
+      </ButtonsContainer>
+      <InputDiv>
+        <input type='number' onChange={handleUserInput} value={userInput === 0 ? '' : userInput}/>
+        <SButton onClick={handleJump} active>Jump</SButton>
+      </InputDiv>
+    </>
+
   );
 }
 
 const ButtonsContainer = styled.div`
+  height: 5rem;
   display: inline-flex;
+  justify-content: center;
   align-items: center;
   border-radius: 0.5rem;
   overflow: hidden;
   margin-top: 4rem;
   margin-bottom: 6rem;
+`
+
+const InputDiv = styled(ButtonsContainer)`
+  width: 18rem;
+  &>input{
+    background-color: ${({theme})=>theme.inputBg};
+    color: white;
+    padding: 1.5rem;
+    height: 100%;
+    width: 50%;
+    border: none;
+    font-size: inherit;
+  }
+  &>input:focus{
+    outline: none;
+  }
 `
