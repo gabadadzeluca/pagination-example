@@ -48,6 +48,7 @@ function App() {
         <Pagination
           handlePageChange={handlePageChange}
           currentPage={currentPage}
+          totalPages={data.length / ITEMS_PER_PAGE}
         />
       </SContainer>
     </ThemeProvider>
