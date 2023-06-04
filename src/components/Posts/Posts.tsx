@@ -10,6 +10,7 @@ export default function Posts(props:{
       {data.map((obj:PhotoObjectInterface)=>
         <StyledDiv>
           <p>Album ID: {obj.albumId}</p>
+          <p>Post ID: {obj.id}</p>
           <a href={obj.url} target="_blank">
             <img src={obj.thumbnailUrl} />
           </a>
