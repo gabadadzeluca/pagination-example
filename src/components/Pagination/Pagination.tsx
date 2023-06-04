@@ -74,6 +74,7 @@ const InputDiv = styled(ButtonsContainer)`
     width: 50%;
     border: none;
     font-size: inherit;
+    cursor: pointer;
     
     ::-webkit-outer-spin-button,
     ::-webkit-inner-spin-button {
