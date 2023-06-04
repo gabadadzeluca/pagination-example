@@ -6,12 +6,16 @@ import Posts from "./components/Posts/Posts";
 import styled, { ThemeProvider } from "styled-components";
 import { darkTheme } from "./utils/theme";
 import Loading from "./components/Loading/Loading";
+import useLocalStorage from "./utils/useLocalStorage";
 
 const ITEMS_PER_PAGE: number = 10;
 
 function App() {
   const [data, setData] = useState<PhotoObjectInterface[]>([]);
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [currentPage, setCurrentPage] = useLocalStorage("currentPage", 1) as [
+    number,
+    React.Dispatch<React.SetStateAction<number>>
+  ];
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const startIndex = currentPage * ITEMS_PER_PAGE;
   const endIndex = (currentPage + 1) * ITEMS_PER_PAGE;
