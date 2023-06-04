@@ -46,7 +46,7 @@ export default function Pagination(props: {
       </ButtonsContainer>
       <InputDiv>
         <input type='number' onChange={handleUserInput} value={userInput === 0 ? '' : userInput}/>
-        <SButton onClick={handleJump} active>Jump</SButton>
+        <SButton onClick={handleJump} active color="#315ad4">Jump</SButton>
       </InputDiv>
     </>
 
@@ -83,6 +83,10 @@ const InputDiv = styled(ButtonsContainer)`
   }
   &>input:focus{
     outline: none;
-
+    background-color: transparent;
+    border: 1px solid orange;
+    border-radius: 0.5rem;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
   }
 `
