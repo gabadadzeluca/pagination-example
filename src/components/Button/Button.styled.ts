@@ -15,7 +15,7 @@ const SButton = styled.button<ButtonProps>`
   width: 10rem;
   height: 5rem;
   font-family: inherit;
-  background-color: ${({theme }) => theme.btnColor};
+  background-color: ${({theme,color }) => color? color : theme.btnColor};
   color: ${({current, theme})=> current ? 'orange' : theme.text };
   font-weight: ${({theme})=> theme.font.medium};
   font-size: 3rem;
