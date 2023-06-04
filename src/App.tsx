@@ -5,12 +5,14 @@ import Pagination from "./components/Pagination/Pagination";
 import Posts from "./components/Posts/Posts";
 import styled, { ThemeProvider } from "styled-components";
 import { darkTheme } from "./utils/theme";
+import Loading from "./components/Loading/Loading";
 
 const ITEMS_PER_PAGE: number = 10;
 
 function App() {
   const [data, setData] = useState<PhotoObjectInterface[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const startIndex = currentPage * ITEMS_PER_PAGE;
   const endIndex = (currentPage + 1) * ITEMS_PER_PAGE;
   const totalPosts = data.length;
@@ -22,6 +24,7 @@ function App() {
   const fetchData = async () => {
     const res = await axios.get(`https://jsonplaceholder.typicode.com/photos/`);
     setData(res.data);
+    setIsLoaded(true);
   };
 
   const getBatchData = (start: number, end: number): PhotoObjectInterface[] => {
@@ -42,14 +45,23 @@ function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <SContainer>
-        <Posts
-          batchData={getBatchData(startIndex, endIndex)}
-        />
-        <Pagination
-          handlePageChange={handlePageChange}
-          currentPage={currentPage}
-          totalPages={data.length / ITEMS_PER_PAGE}
-        />
+        {
+          isLoaded ? 
+          (
+            <>
+              <Posts
+                batchData={getBatchData(startIndex, endIndex)}
+              />
+              <Pagination
+                handlePageChange={handlePageChange}
+                currentPage={currentPage}
+                totalPages={data.length / ITEMS_PER_PAGE}
+              />
+            </>
+          )
+          :
+          (<Loading />)
+        }
       </SContainer>
     </ThemeProvider>
   );
