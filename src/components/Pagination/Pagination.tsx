@@ -26,7 +26,6 @@ export default function Pagination(props: {
     setUserInput(0); // clear out the input field
   }
 
-  console.log("user input",userInput);
   return (
     <>
       <ButtonsContainer>
@@ -37,7 +36,7 @@ export default function Pagination(props: {
             key={index}
             onClick={() => handlePageChange(currentPage + number)}
             active={currentPage+number >= 0 && currentPage + number <= totalPages}
-            current={index === 2}
+            current={index === Math.floor(ACTIONS.length/2)}
           >
             {currentPage + number <= 0 || currentPage + number > totalPages ? "" : currentPage + number}
           </SButton>
