@@ -12,7 +12,7 @@ const ITEMS_PER_PAGE: number = 10;
 
 function App() {
   const [data, setData] = useState<PhotoObjectInterface[]>([]);
-  const [currentPage, setCurrentPage] = useLocalStorage("currentPage", 1) as [
+  const [currentPage, setCurrentPage] = useLocalStorage("currentPage") as [
     number,
     React.Dispatch<React.SetStateAction<number>>
   ];
