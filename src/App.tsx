@@ -33,35 +33,30 @@ function App() {
       return [...data.slice(start, -1), data[data.length - 1]];
     }
     // Slice the data array to get the images for the current page
-    return data.slice(start-ITEMS_PER_PAGE, end-ITEMS_PER_PAGE);
+    return data.slice(start - ITEMS_PER_PAGE, end - ITEMS_PER_PAGE);
   };
 
   const handlePageChange = (pageNumber: number) => {
-    if(pageNumber<=0) return;
-    if(totalPosts < pageNumber * ITEMS_PER_PAGE) return;
+    if (pageNumber <= 0) return;
+    if (totalPosts < pageNumber * ITEMS_PER_PAGE) return;
     setCurrentPage(pageNumber);
   };
 
   return (
     <ThemeProvider theme={darkTheme}>
       <SContainer>
-        {
-          isLoaded ? 
-          (
-            <>
-              <Posts
-                batchData={getBatchData(startIndex, endIndex)}
-              />
-              <Pagination
-                handlePageChange={handlePageChange}
-                currentPage={currentPage}
-                totalPages={data.length / ITEMS_PER_PAGE}
-              />
-            </>
-          )
-          :
-          (<Loading />)
-        }
+        {isLoaded ? (
+          <>
+            <Posts batchData={getBatchData(startIndex, endIndex)} />
+            <Pagination
+              handlePageChange={handlePageChange}
+              currentPage={currentPage}
+              totalPages={data.length / ITEMS_PER_PAGE}
+            />
+          </>
+        ) : (
+          <Loading />
+        )}
       </SContainer>
     </ThemeProvider>
   );
@@ -70,12 +65,12 @@ function App() {
 export default App;
 
 const SContainer = styled.div`
-  background-color: ${({theme})=>theme.bg};
+  background-color: ${({ theme }) => theme.bg};
   width: 100vw;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: ${({theme})=> theme.text};
+  color: ${({ theme }) => theme.text};
   overflow-x: hidden;
-`
+`;
